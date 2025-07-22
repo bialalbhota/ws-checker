@@ -23,10 +23,12 @@
     <div class="col-md-6">
       <h5>✅ Registered Numbers</h5>
       <textarea class="form-control" id="registered" rows="6" readonly></textarea>
+      <button onclick="copyToClipboard('registered')" class="btn btn-success mt-2 w-100">Copy Registered</button>
     </div>
     <div class="col-md-6">
       <h5>❌ Not Registered Numbers</h5>
       <textarea class="form-control" id="notRegistered" rows="6" readonly></textarea>
+      <button onclick="copyToClipboard('notRegistered')" class="btn btn-danger mt-2 w-100">Copy Not Registered</button>
     </div>
   </div>
 </div>
@@ -61,9 +63,15 @@ async function checkNumbers() {
   document.getElementById("registered").value = data.registered.join("\n");
   document.getElementById("notRegistered").value = data.notRegistered.join("\n");
 
-  // progress 100%
   document.getElementById("progressFill").style.width = "100%";
   document.getElementById("progressFill").innerText = "100%";
+}
+
+function copyToClipboard(id) {
+  const textarea = document.getElementById(id);
+  textarea.select();
+  document.execCommand("copy");
+  alert("Copied to clipboard!");
 }
 </script>
 </body>
